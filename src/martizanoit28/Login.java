@@ -4,11 +4,18 @@
  */
 package martizanoit28;
 
+import martizanoit28.User;
+import connect.usercon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Thrisha Mae
  */
 public class Login extends javax.swing.JFrame {
+    public String emailPattern = "[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
@@ -17,6 +24,25 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        log1.setEnabled(false);
+    }
+    
+    public void clear(){
+        txtEmail.setText("");
+        txtpass.setText("");
+        log1.setEnabled(false);
+    }
+    
+    public void validateFields(){
+        String email = txtEmail.getText();
+        String password = txtpass.getText();
+        if(email.matches(emailPattern) && !password.equals("")){ 
+            log1.setEnabled(true);
+                    
+        }
+        else{
+            log1.setEnabled(false);
+        }
     }
 
     /**
@@ -28,21 +54,143 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtpass = new javax.swing.JPasswordField();
+        log1 = new javax.swing.JButton();
+        clr1 = new javax.swing.JButton();
+        xt1 = new javax.swing.JButton();
+        sgnp = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel1.setText("LOGIN");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 121, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Email:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 126, 64, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Password:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 106, -1));
+
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEmailKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 290, 30));
+
+        txtpass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtpassKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 290, 30));
+
+        log1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        log1.setText("Login");
+        log1.addActionListener(this::log1ActionPerformed);
+        getContentPane().add(log1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, -1, -1));
+
+        clr1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        clr1.setText("Clear");
+        clr1.setToolTipText("");
+        clr1.addActionListener(this::clr1ActionPerformed);
+        getContentPane().add(clr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
+
+        xt1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        xt1.setText("Exit");
+        xt1.addActionListener(this::xt1ActionPerformed);
+        getContentPane().add(xt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 80, -1));
+
+        sgnp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sgnp.setText("SIGNUP");
+        sgnp.addActionListener(this::sgnpActionPerformed);
+        getContentPane().add(sgnp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 260, 30));
+
+        jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Dont have an account?");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/bg3.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sgnpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sgnpActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new Signup().setVisible(true);
+    }//GEN-LAST:event_sgnpActionPerformed
+
+    private void log1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log1ActionPerformed
+        // TODO add your handling code here:
+       String email = txtEmail.getText();
+    String password = txtpass.getText();
+    
+    // Call the login method
+    User user = usercon.login(email, password);
+    
+    // 1. Check if user exists at all
+    if (user == null) {
+        JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+    } 
+    else {
+        // 2. Check the status of the user found
+        if (user.getStatus().equals("false")) {
+            // User exists but isn't approved
+            ImageIcon icon = new ImageIcon("src/popupicon/wait.png"); // Fixed 'scr' to 'src'
+            JOptionPane.showMessageDialog(null, "<html><b>Wait for admin Approval</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
+            clear();
+        } 
+        else if (user.getStatus().equals("true")) {
+            // User exists and is approved!
+            setVisible(false);
+            new Dashboard(email).setVisible(true);
+        }
+    }
+    }//GEN-LAST:event_log1ActionPerformed
+
+    private void xt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xt1ActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(null,"Do you really want to exit application", "Select", JOptionPane.YES_NO_OPTION);
+        if (a ==0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_xt1ActionPerformed
+
+    private void txtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtEmailKeyReleased
+
+    private void txtpassKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtpassKeyReleased
+
+    private void clr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clr1ActionPerformed
+        // TODO add your handling code here:
+        clear();
+        
+    }//GEN-LAST:event_clr1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +218,16 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clr1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton log1;
+    private javax.swing.JButton sgnp;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtpass;
+    private javax.swing.JButton xt1;
     // End of variables declaration//GEN-END:variables
 }

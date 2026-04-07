@@ -13,8 +13,10 @@ import javax.swing.JOptionPane;
 public class tables {
     public static void main(String[] args){
         try{
-            String userTable = "create table user (userID int (5) primary key, name varchar(10) not null, email varchar(10) not null, password varchar(10) not null, address varchar(10) not null, UNIQUE(email))";
-            Dbop.setDataOrDelete(userTable, "Table Create Succesfully");
+           String userTable = "create table user (id int AUTO_INCREMENT primary key,name varchar(50) not null, email varchar(150) not null, password varchar(10) not null, address varchar(100) not null, status varchar(10), UNIQUE(email))";
+            //String adminDetails = "insert into user(name, email, password, address, status) " + "values ('heroniiis', 'adfs@gmail.com', 'ssdid', 'Canada', 'true')";
+           Dbop.setDataOrDelete(userTable, "Table Create Succesfully");
+            //Dbop.setDataOrDelete(adminDetails, "Admin Details Added Succesfully");
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
