@@ -7,6 +7,7 @@ package martizanoit28;
 import javax.swing.JOptionPane;
 import martizanoit28.User;
 import connect.usercon;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Thrisha Mae
@@ -137,7 +138,7 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 330, -1));
 
         bt1save.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bt1save.setText("Save");
+        bt1save.setText("Register");
         bt1save.addActionListener(this::bt1saveActionPerformed);
         getContentPane().add(bt1save, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 80, 20));
 
@@ -158,7 +159,7 @@ public class Signup extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Already have an account?");
+        jLabel7.setText("Already Register?");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 160, -1));
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 204));
@@ -191,8 +192,21 @@ public class Signup extends javax.swing.JFrame {
         user.setEmail(email1.getText());
         user.setPassword(pass1.getText());
         user.setAddress(add1.getText());
-        usercon.save(user);
-        clear();
+        
+       user.setStatus("false"); // Set default status to false for admin approval
+
+    // 2. Call your database method to save the user
+    // Assuming you have a method like usercon.save(user)
+    usercon.save(user);
+
+    // 3. Show the "Wait for Admin Approval" popup
+    ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
+    JOptionPane.showMessageDialog(null, "<html><b>Wait for Admin Approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
+    
+    // 4. Clear the fields and redirect to Login
+    clear(); 
+    setVisible(false);
+    new Login().setVisible(true); // Open your Login JFrame
         
         
     }//GEN-LAST:event_bt1saveActionPerformed

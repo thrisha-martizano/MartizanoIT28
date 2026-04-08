@@ -3,13 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package martizanoit28;
+
+import connect.ConnectionProvider;
+import connect.Dbop;
+import connect.usercon;
 import javax.swing.JOptionPane;
+import java.sql.*;
+
 /**
  *
  * @author Thrisha Mae
  */
 public class Dashboard extends javax.swing.JFrame {
+
     public String email;
+    public String emailPattern = "[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
 
     /**
@@ -19,14 +28,16 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
     }
 
-    
-     public Dashboard(String userEmail) {
+    public Dashboard(String userEmail) {
         initComponents();
         email = userEmail;
-        if (!email.equals("thrsh@gmail.com")){
+        if (!email.equals("thrsh@gmail.com")) {
             btnverify.setVisible(false);
+
         }
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,49 +49,210 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnlogout = new javax.swing.JButton();
         btnverify = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        lblusername = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtaddress = new javax.swing.JTextField();
+        txtpass = new javax.swing.JPasswordField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnlogout.setBackground(new java.awt.Color(255, 255, 204));
-        btnlogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnlogout.setFont(new java.awt.Font("Elephant", 1, 14)); // NOI18N
         btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/out (1).png"))); // NOI18N
         btnlogout.setText("Logout");
         btnlogout.addActionListener(this::btnlogoutActionPerformed);
-        getContentPane().add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, -1, 40));
+        getContentPane().add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 140, 40));
 
         btnverify.setBackground(new java.awt.Color(255, 255, 204));
-        btnverify.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnverify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/user (1).png"))); // NOI18N
+        btnverify.setFont(new java.awt.Font("Elephant", 1, 14)); // NOI18N
+        btnverify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/shield.png"))); // NOI18N
         btnverify.setText("Verify Users");
-        getContentPane().add(btnverify, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 150, 40));
+        btnverify.addActionListener(this::btnverifyActionPerformed);
+        getContentPane().add(btnverify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 160, 40));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
+        jButton3.setText("Category");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 50));
+
+        jButton2.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
+        jButton2.setText("Profile");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 140, 50));
+
+        jButton1.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
+        jButton1.setText("Home");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, 50));
+
+        jLabel1.setFont(new java.awt.Font("Elephant", 1, 30)); // NOI18N
         jLabel1.setText("Welcome!");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 180, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 170, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/toop2.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 779, 60));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/top.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 470));
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTabbedPane1.addTab("tab3", jPanel3);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblusername.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        lblusername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblusername.setText("username");
+        jPanel1.add(lblusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 310, 70, -1));
+        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 300, 30));
+
+        jLabel11.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel11.setText("Name");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel12.setText("Email");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel13.setText("Address");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel14.setText("Password");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 300, 30));
+        jPanel1.add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 300, 30));
+        jPanel1.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 300, 30));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/resume (1).png"))); // NOI18N
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Elephant", 1, 36)); // NOI18N
+        jLabel16.setText("Profile");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 150, 60));
+
+        btnUpdate.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/save.png"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/download (4).jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 470));
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 480));
+
+        jTabbedPane1.addTab("tab1", jPanel1);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("TabTwo");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 100, 40));
+
+        jTabbedPane1.addTab("tab2", jPanel2);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -40, 600, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
-        
+
         int a = JOptionPane.showConfirmDialog(null, "Do you really want to logout?", "Select", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
-            setVisible(false);
+            // setVisible(false);
             new Login().setVisible(true);
         }
     }//GEN-LAST:event_btnlogoutActionPerformed
+
+    private void btnverifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnverifyActionPerformed
+        // TODO add your handling code here:
+        new VerifyUsers().setVisible(true);
+    }//GEN-LAST:event_btnverifyActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        try {
+            Connection con = ConnectionProvider.getCon();
+            // 1. Check your SQL string. Ensure 'SET' and 'WHERE' are correct.
+            String query = "update user set name=?, address=?, password=? where email=?";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, txtName.getText());
+            ps.setString(2, txtaddress.getText());
+            ps.setString(3, txtpass.getText());
+            ps.setString(4, txtEmail.getText());
+            // 3. Check how many rows actually changed
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Profile Successfully Updated!");
+            } else {
+                // If you see this, the 'userEmail' didn't match anything in the DB
+                JOptionPane.showMessageDialog(null, "No user found with that email. Update failed. " + email);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from user where email='" + email + "'");
+            while (rs.next()) {
+                txtName.setText(rs.getString("name"));
+                txtEmail.setText(rs.getString("email"));
+                txtpass.setText(rs.getString("password"));
+                txtaddress.setText(rs.getString("address"));
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -108,10 +280,30 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnlogout;
     private javax.swing.JButton btnverify;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblusername;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtaddress;
+    private javax.swing.JPasswordField txtpass;
     // End of variables declaration//GEN-END:variables
 }

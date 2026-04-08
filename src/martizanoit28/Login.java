@@ -70,9 +70,9 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("LOGIN");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 121, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 121, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,18 +103,18 @@ public class Login extends javax.swing.JFrame {
         log1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         log1.setText("Login");
         log1.addActionListener(this::log1ActionPerformed);
-        getContentPane().add(log1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
+        getContentPane().add(log1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, -1, -1));
 
         clr1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         clr1.setText("Clear");
         clr1.setToolTipText("");
         clr1.addActionListener(this::clr1ActionPerformed);
-        getContentPane().add(clr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
+        getContentPane().add(clr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, -1, -1));
 
         xt1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         xt1.setText("Exit");
         xt1.addActionListener(this::xt1ActionPerformed);
-        getContentPane().add(xt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 80, -1));
+        getContentPane().add(xt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 80, -1));
 
         sgnp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         sgnp.setText("SIGNUP");
@@ -155,8 +155,8 @@ public class Login extends javax.swing.JFrame {
                 new Dashboard(email).setVisible(true);
             } else {
                 // This handles 'false', null, or any other status
-                ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
-                JOptionPane.showMessageDialog(null, "<html><b>Wait for Admin Approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
+                ImageIcon icon = new ImageIcon("src/popupicon/pending.png");
+                JOptionPane.showMessageDialog(null, "<html><b>Your account is still pending for approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
                 clear();
             }
         }

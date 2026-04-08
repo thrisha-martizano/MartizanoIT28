@@ -7,6 +7,8 @@ package connect;
 import martizanoit28.User;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.util.ArrayList;
+import java.sql.ResultSet;
 /**
  *
  * @author Thrisha Mae
@@ -35,4 +37,31 @@ public class usercon {
         }
         return user;
     }
+    
+    public static ArrayList<User> getAllRecords(String email){
+        ArrayList<User> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs = Dbop.getData("select * from user where email like '%"+email+"%'");
+            while(rs.next()){
+                User user = new User ();
+                user.setId(rs.getInt("Id"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setAddress(rs.getString("address"));
+                user.setStatus(rs.getString("status"));
+                arrayList.add(user);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
+    public static void changeStatus(String email, String status) {
+        String query = "update user set status='"+status+"' where email='"+email+"'";
+        Dbop.setDataOrDelete(query, "Status Changed Successfully");
+    }
+    
+   
 }
