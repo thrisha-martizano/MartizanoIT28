@@ -3,13 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package martizanoit28;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author Thrisha Mae
  */
 public class Dashboard extends javax.swing.JFrame {
-    
+    public String email;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
 
     /**
@@ -20,8 +20,12 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     
-     public Dashboard(String email) {
+     public Dashboard(String userEmail) {
         initComponents();
+        email = userEmail;
+        if (!email.equals("thrsh@gmail.com")){
+            btnverify.setVisible(false);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,21 +36,51 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btnlogout = new javax.swing.JButton();
+        btnverify = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnlogout.setBackground(new java.awt.Color(255, 255, 204));
+        btnlogout.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/out (1).png"))); // NOI18N
+        btnlogout.setText("Logout");
+        btnlogout.addActionListener(this::btnlogoutActionPerformed);
+        getContentPane().add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, -1, 40));
+
+        btnverify.setBackground(new java.awt.Color(255, 255, 204));
+        btnverify.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnverify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/user (1).png"))); // NOI18N
+        btnverify.setText("Verify Users");
+        getContentPane().add(btnverify, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 150, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Welcome!");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 180, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/toop2.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 779, 60));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/download (4).jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+        // TODO add your handling code here:
+        
+        int a = JOptionPane.showConfirmDialog(null, "Do you really want to logout?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            setVisible(false);
+            new Login().setVisible(true);
+        }
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,5 +108,10 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnlogout;
+    private javax.swing.JButton btnverify;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

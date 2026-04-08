@@ -9,14 +9,14 @@ import connect.usercon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Thrisha Mae
  */
 public class Login extends javax.swing.JFrame {
+
     public String emailPattern = "[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
     /**
@@ -26,21 +26,20 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         log1.setEnabled(false);
     }
-    
-    public void clear(){
+
+    public void clear() {
         txtEmail.setText("");
         txtpass.setText("");
         log1.setEnabled(false);
     }
-    
-    public void validateFields(){
+
+    public void validateFields() {
         String email = txtEmail.getText();
         String password = txtpass.getText();
-        if(email.matches(emailPattern) && !password.equals("")){ 
+        if (email.matches(emailPattern) && !password.equals("")) {
             log1.setEnabled(true);
-                    
-        }
-        else{
+
+        } else {
             log1.setEnabled(false);
         }
     }
@@ -104,13 +103,13 @@ public class Login extends javax.swing.JFrame {
         log1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         log1.setText("Login");
         log1.addActionListener(this::log1ActionPerformed);
-        getContentPane().add(log1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, -1, -1));
+        getContentPane().add(log1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
 
         clr1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         clr1.setText("Clear");
         clr1.setToolTipText("");
         clr1.addActionListener(this::clr1ActionPerformed);
-        getContentPane().add(clr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
+        getContentPane().add(clr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
 
         xt1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         xt1.setText("Exit");
@@ -142,36 +141,31 @@ public class Login extends javax.swing.JFrame {
 
     private void log1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log1ActionPerformed
         // TODO add your handling code here:
-       String email = txtEmail.getText();
-    String password = txtpass.getText();
-    
-    // Call the login method
-    User user = usercon.login(email, password);
-    
-    // 1. Check if user exists at all
-    if (user == null) {
-        JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
-    } 
-    else {
-        // 2. Check the status of the user found
-        if (user.getStatus().equals("false")) {
-            // User exists but isn't approved
-            ImageIcon icon = new ImageIcon("src/popupicon/wait.png"); // Fixed 'scr' to 'src'
-            JOptionPane.showMessageDialog(null, "<html><b>Wait for admin Approval</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
-            clear();
-        } 
-        else if (user.getStatus().equals("true")) {
-            // User exists and is approved!
-            setVisible(false);
-            new Dashboard(email).setVisible(true);
+        String email = txtEmail.getText();
+        String password = txtpass.getText();
+
+        User user = usercon.login(email, password);
+
+        if (user == null) {
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // Check if the user is approved
+            if ("true".equals(user.getStatus())) {
+                setVisible(false);
+                new Dashboard(email).setVisible(true);
+            } else {
+                // This handles 'false', null, or any other status
+                ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
+                JOptionPane.showMessageDialog(null, "<html><b>Wait for Admin Approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
+                clear();
+            }
         }
-    }
     }//GEN-LAST:event_log1ActionPerformed
 
     private void xt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xt1ActionPerformed
         // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(null,"Do you really want to exit application", "Select", JOptionPane.YES_NO_OPTION);
-        if (a ==0){
+        int a = JOptionPane.showConfirmDialog(null, "Do you really want to exit application", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
             System.exit(0);
         }
     }//GEN-LAST:event_xt1ActionPerformed
@@ -189,7 +183,7 @@ public class Login extends javax.swing.JFrame {
     private void clr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clr1ActionPerformed
         // TODO add your handling code here:
         clear();
-        
+
     }//GEN-LAST:event_clr1ActionPerformed
 
     /**

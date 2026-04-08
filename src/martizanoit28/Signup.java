@@ -44,6 +44,7 @@ public class Signup extends javax.swing.JFrame {
             bt1save.setEnabled(false);
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,7 +94,7 @@ public class Signup extends javax.swing.JFrame {
         passl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         passl.setForeground(new java.awt.Color(255, 255, 255));
         passl.setText("Password:");
-        getContentPane().add(passl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 100, -1));
+        getContentPane().add(passl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 205, 100, 20));
 
         addl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         addl.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,6 +128,7 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 330, -1));
 
         pass1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        pass1.addActionListener(this::pass1ActionPerformed);
         pass1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 pass1KeyReleased(evt);
@@ -191,6 +193,8 @@ public class Signup extends javax.swing.JFrame {
         user.setAddress(add1.getText());
         usercon.save(user);
         clear();
+        
+        
     }//GEN-LAST:event_bt1saveActionPerformed
 
     private void bt2clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2clearActionPerformed
@@ -220,6 +224,10 @@ public class Signup extends javax.swing.JFrame {
         setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_bt5loginActionPerformed
+
+    private void pass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pass1ActionPerformed
 
     /**
      * @param args the command line arguments
