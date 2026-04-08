@@ -14,9 +14,10 @@ public class tables {
     public static void main(String[] args){
         try{
            String userTable = "create table user (id int AUTO_INCREMENT primary key,name varchar(50) not null, email varchar(150) not null, password varchar(10) not null, address varchar(100) not null, status varchar(10), UNIQUE(email))";
-            //String adminDetails = "insert into user(name, email, password, address, status) " + "values ('heroniiis', 'adfs@gmail.com', 'ssdid', 'Canada', 'true')";
+           String adminDetails = "insert into user(name, email, password, address, status) " + "values ('thrsh', 'thrsh@gmail.com', 'mrtzn', 'bukidnon', 'true')";
            Dbop.setDataOrDelete(userTable, "Table Create Succesfully");
-            //Dbop.setDataOrDelete(adminDetails, "Admin Details Added Succesfully");
+           Dbop.setDataOrDelete(adminDetails, "Admin Details Added Succesfully");
+           
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
