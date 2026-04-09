@@ -69,18 +69,19 @@ public class Signup extends javax.swing.JFrame {
         bt3exit = new javax.swing.JButton();
         bt5login = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        regtitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        regtitle.setFont(new java.awt.Font("Elephant", 1, 36)); // NOI18N
         regtitle.setForeground(new java.awt.Color(255, 255, 0));
         regtitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         regtitle.setText("REGISTRATION");
         regtitle.setToolTipText("");
-        getContentPane().add(regtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 400, -1));
+        getContentPane().add(regtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 400, -1));
 
         namel.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         namel.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,30 +138,36 @@ public class Signup extends javax.swing.JFrame {
         });
         getContentPane().add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 330, -1));
 
-        bt1save.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt1save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bt1save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
         bt1save.setText("Register");
         bt1save.addActionListener(this::bt1saveActionPerformed);
-        getContentPane().add(bt1save, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 80, 20));
+        getContentPane().add(bt1save, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 140, 30));
 
-        bt2clear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt2clear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bt2clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/clear (1).png"))); // NOI18N
         bt2clear.setText("Clear");
         bt2clear.addActionListener(this::bt2clearActionPerformed);
-        getContentPane().add(bt2clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 80, 20));
+        getContentPane().add(bt2clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, 30));
 
-        bt3exit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt3exit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bt3exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/out.png"))); // NOI18N
         bt3exit.setText("Exit");
         bt3exit.addActionListener(this::bt3exitActionPerformed);
-        getContentPane().add(bt3exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 80, 20));
+        getContentPane().add(bt3exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 80, 30));
 
-        bt5login.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt5login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt5login.setText("LOGIN");
         bt5login.addActionListener(this::bt5loginActionPerformed);
-        getContentPane().add(bt5login, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 270, 30));
+        getContentPane().add(bt5login, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 270, 30));
 
         jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Already Register?");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 160, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 160, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/WOOW.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 390, 260));
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 204));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/bg3.png"))); // NOI18N
@@ -277,6 +284,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JButton bt5login;
     private javax.swing.JTextField email1;
     private javax.swing.JLabel emaill;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField name1;

@@ -7,8 +7,10 @@ package martizanoit28;
 import connect.ConnectionProvider;
 import connect.Dbop;
 import connect.usercon;
+import java.awt.Image;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +19,7 @@ import java.sql.*;
 public class Dashboard extends javax.swing.JFrame {
 
     public String email;
+    String currentUserRole;
     public String emailPattern = "[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
@@ -26,17 +29,97 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        
+        loadLifeQuotes();
+        loadEducationQuotes();
+//        
+//        //this.currentUserRole = role; // Saves the role (Admin or Student)
+//        
+//        // 1. Load the photos for EVERYONE
+//        loadLifeQuotes();
+//        loadEducationQuotes();
+//        
+//        // 2. Role-based Visibility
+//        // If the user is NOT an Admin, hide the Manage button
+//        if (!"Admin".equals()) {
+//            btnmanage.setVisible(false); 
+//        }
     }
+    
+   
 
     public Dashboard(String userEmail) {
         initComponents();
         email = userEmail;
-        if (!email.equals("thrsh@gmail.com")) {
+        if (!email.equals("currentUserRole")) {
             btnverify.setVisible(false);
-
+            btnmanage.setVisible(false); 
         }
-
     }
+
+  public void loadLifeQuotes() {
+    // 1. Clear any old database photos first (optional, prevents duplicates)
+    // If you want to keep the original hardcoded ones, don't clear the panel.
+    
+    try {
+        Connection con = connect.ConnectionProvider.getCon();
+        String sql = "SELECT image_path FROM admin_quotes WHERE category='Life' ORDER BY id DESC";
+        PreparedStatement pst = con.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            String imagePath = rs.getString("image_path");
+            
+            // Create a NEW label for every picture in the database
+            javax.swing.JLabel newQuoteLabel = new javax.swing.JLabel();
+            
+            // Set the size to match your design (e.g., 250x200)
+            newQuoteLabel.setPreferredSize(new java.awt.Dimension(250, 200));
+            
+            ImageIcon icon = new ImageIcon(imagePath);
+            Image img = icon.getImage().getScaledInstance(250, 200, Image.SCALE_SMOOTH);
+            newQuoteLabel.setIcon(new ImageIcon(img));
+
+            // ADD it directly to your panel
+            jPanel4.add(newQuoteLabel);
+        }
+        
+        // Refresh the panel so the new labels show up
+        jPanel4.revalidate();
+        jPanel4.repaint();
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public void loadEducationQuotes() {
+    try {
+        Connection con = connect.ConnectionProvider.getCon();
+        // Just changed the category and target panel
+        String sql = "SELECT image_path FROM admin_quotes WHERE category='Education' ORDER BY id DESC";
+        PreparedStatement pst = con.prepareStatement(sql);
+        ResultSet rs = pst.executeQuery();
+
+        while (rs.next()) {
+            String imagePath = rs.getString("image_path");
+            javax.swing.JLabel newEduLabel = new javax.swing.JLabel();
+            
+            // Using 350x250 to match your Education stickers size
+            newEduLabel.setPreferredSize(new java.awt.Dimension(350, 250));
+
+            ImageIcon icon = new ImageIcon(imagePath);
+            Image img = icon.getImage().getScaledInstance(350, 250, Image.SCALE_SMOOTH);
+            newEduLabel.setIcon(new ImageIcon(img));
+
+            jPanel5.add(newEduLabel); // Education Panel
+        }
+        jPanel5.revalidate();
+        jPanel5.repaint();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,17 +130,19 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         btnlogout = new javax.swing.JButton();
         btnverify = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnmanage = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        lblusername = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -69,9 +154,38 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jTabbedPane5 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -81,9 +195,8 @@ public class Dashboard extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnlogout.setBackground(new java.awt.Color(255, 255, 204));
         btnlogout.setFont(new java.awt.Font("Elephant", 1, 14)); // NOI18N
-        btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/out (1).png"))); // NOI18N
+        btnlogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/logout (1).png"))); // NOI18N
         btnlogout.setText("Logout");
         btnlogout.addActionListener(this::btnlogoutActionPerformed);
         getContentPane().add(btnlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 140, 40));
@@ -96,7 +209,7 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().add(btnverify, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 160, 40));
 
         jButton3.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
-        jButton3.setText("Category");
+        jButton3.setText("Quotes");
         jButton3.addActionListener(this::jButton3ActionPerformed);
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 50));
 
@@ -110,55 +223,61 @@ public class Dashboard extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, 50));
 
-        jLabel1.setFont(new java.awt.Font("Elephant", 1, 30)); // NOI18N
-        jLabel1.setText("Welcome!");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 170, 40));
+        btnmanage.setBackground(new java.awt.Color(255, 255, 204));
+        btnmanage.setFont(new java.awt.Font("Elephant", 1, 12)); // NOI18N
+        btnmanage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/quotes (3).png"))); // NOI18N
+        btnmanage.setText("Manage Quotes");
+        btnmanage.addActionListener(this::btnmanageActionPerformed);
+        getContentPane().add(btnmanage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 160, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/top.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 470));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/homee.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 600, 500));
+
         jTabbedPane1.addTab("tab3", jPanel3);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblusername.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
-        lblusername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblusername.setText("username");
-        jPanel1.add(lblusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 310, 70, -1));
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 300, 30));
 
-        jLabel11.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         jLabel11.setText("Name");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         jLabel12.setText("Email");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         jLabel13.setText("Address");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Elephant", 0, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         jLabel14.setText("Password");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 300, 30));
         jPanel1.add(txtaddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 300, 30));
         jPanel1.add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 300, 30));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/resume (1).png"))); // NOI18N
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/user (3).png"))); // NOI18N
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 140, -1));
 
         jLabel16.setFont(new java.awt.Font("Elephant", 1, 36)); // NOI18N
         jLabel16.setText("Profile");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 150, 60));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 150, 60));
 
         btnUpdate.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/save.png"))); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/user-avatar.png"))); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
         jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 400, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/WOOW.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 550, 480));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/download (4).jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -168,10 +287,83 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel8.setPreferredSize(new java.awt.Dimension(250, 200));
+        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
+
+        jTabbedPane5.setMinimumSize(new java.awt.Dimension(80, 81));
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/life1-removebg-preview.png"))); // NOI18N
+        jLabel6.setAlignmentX(20.0F);
+        jLabel6.setAlignmentY(20.0F);
+        jPanel4.add(jLabel6);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/life2-removebg-preview.png"))); // NOI18N
+        jLabel7.setAlignmentX(20.0F);
+        jLabel7.setAlignmentY(20.0F);
+        jPanel4.add(jLabel7);
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/life3-removebg-preview.png"))); // NOI18N
+        jLabel8.setAlignmentX(20.0F);
+        jLabel8.setAlignmentY(20.0F);
+        jPanel4.add(jLabel8);
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/life4-removebg-preview.png"))); // NOI18N
+        jLabel9.setAlignmentX(20.0F);
+        jLabel9.setAlignmentY(20.0F);
+        jPanel4.add(jLabel9);
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        jTabbedPane5.addTab("Life", jScrollPane1);
+
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu1-removebg-preview.png"))); // NOI18N
+        jLabel17.setAlignmentX(20.0F);
+        jLabel17.setAlignmentY(20.0F);
+        jLabel17.setPreferredSize(new java.awt.Dimension(250, 200));
+        jPanel5.add(jLabel17);
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu2-removebg-preview.png"))); // NOI18N
+        jLabel10.setAlignmentX(20.0F);
+        jLabel10.setAlignmentY(20.0F);
+        jLabel10.setPreferredSize(new java.awt.Dimension(250, 200));
+        jPanel5.add(jLabel10);
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu4-removebg-preview.png"))); // NOI18N
+        jLabel19.setAlignmentX(20.0F);
+        jLabel19.setAlignmentY(20.0F);
+        jLabel19.setPreferredSize(new java.awt.Dimension(250, 200));
+        jPanel5.add(jLabel19);
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu3-removebg-preview.png"))); // NOI18N
+        jLabel18.setAlignmentX(20.0F);
+        jLabel18.setAlignmentY(20.0F);
+        jLabel18.setPreferredSize(new java.awt.Dimension(250, 200));
+        jPanel5.add(jLabel18);
+
+        jScrollPane2.setViewportView(jPanel5);
+
+        jTabbedPane5.addTab("Education", jScrollPane2);
+
+        jPanel8.add(jTabbedPane5);
+
+        jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 570, 320));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/Be Inspired.png"))); // NOI18N
         jLabel3.setText("TabTwo");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 100, 40));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 610, 480));
+        jPanel2.add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, -1, -1));
 
         jTabbedPane1.addTab("tab2", jPanel2);
 
@@ -185,7 +377,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         int a = JOptionPane.showConfirmDialog(null, "Do you really want to logout?", "Select", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
-            // setVisible(false);
+            setVisible(false);
             new Login().setVisible(true);
         }
     }//GEN-LAST:event_btnlogoutActionPerformed
@@ -254,6 +446,12 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formComponentShown
 
+    private void btnmanageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanageActionPerformed
+        // TODO add your handling code here:
+        ManageQuotes manageFrame = new ManageQuotes();
+        manageFrame.setVisible(true);
+    }//GEN-LAST:event_btnmanageActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,25 +480,43 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnlogout;
+    private javax.swing.JButton btnmanage;
     private javax.swing.JButton btnverify;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lblusername;
+    private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtaddress;
