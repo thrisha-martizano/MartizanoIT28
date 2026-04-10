@@ -13,21 +13,48 @@ import javax.swing.JOptionPane;
 import connect.ConnectionProvider;
 import java.sql.PreparedStatement;
 import java.sql.*;
-
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Thrisha Mae
  */
 public class ManageQuotes extends javax.swing.JFrame {
-   
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageQuotes.class.getName());
     String path = "";
+
     /**
      * Creates new form ManageQuotes
      */
     public ManageQuotes() {
         initComponents();
+        tableDetails();
+    }
+
+    public void tableDetails() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+        dtm.setRowCount(0);
+
+        try {
+            // Connect to your database
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+
+            // Ask for all the quotes
+            ResultSet rs = st.executeQuery("select * from admin_quotes");
+
+            // Loop through every row found in MySQL
+            while (rs.next()) {
+                // Add that row to your JTable on the screen
+                dtm.addRow(new Object[]{
+                    rs.getString("id"),
+                    rs.getString("category"),
+                    rs.getString("image_path")
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -47,6 +74,12 @@ public class ManageQuotes extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         lblImagePreview = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,17 +102,19 @@ public class ManageQuotes extends javax.swing.JFrame {
 
         comboCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Life", "Education", " " }));
-        getContentPane().add(comboCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 280, 40));
+        getContentPane().add(comboCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 280, 40));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 204));
         jButton1.setFont(new java.awt.Font("Elephant", 0, 24)); // NOI18N
         jButton1.setText("Browse");
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 190, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 190, 40));
 
+        jButton2.setBackground(new java.awt.Color(204, 255, 204));
         jButton2.setFont(new java.awt.Font("Elephant", 0, 24)); // NOI18N
         jButton2.setText("Save");
         jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 190, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 410, 190, -1));
 
         jButton3.setText("jButton3");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, -1));
@@ -87,7 +122,34 @@ public class ManageQuotes extends javax.swing.JFrame {
         lblImagePreview.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblImagePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagePreview.setText("Image Preview");
-        getContentPane().add(lblImagePreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 280, 190));
+        getContentPane().add(lblImagePreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 280, 190));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/sess-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 180, 130));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Category", "Image Path"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 320, 310));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/sess-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/sess-removebg-preview.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 30, 150, 120));
+
+        jButton5.setBackground(new java.awt.Color(255, 153, 153));
+        jButton5.setFont(new java.awt.Font("Elephant", 1, 24)); // NOI18N
+        jButton5.setText("Delete");
+        jButton5.addActionListener(this::jButton5ActionPerformed);
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 190, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/download (4).jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -104,7 +166,6 @@ public class ManageQuotes extends javax.swing.JFrame {
 
         if (f != null) {
             path = f.getAbsolutePath();
-            // Show a preview in your label
             ImageIcon icon = new ImageIcon(path);
             Image img = icon.getImage().getScaledInstance(lblImagePreview.getWidth(),
                     lblImagePreview.getHeight(), Image.SCALE_SMOOTH);
@@ -113,43 +174,74 @@ public class ManageQuotes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String category = comboCategory.getSelectedItem().toString();
+        String category = comboCategory.getSelectedItem().toString();
 
-    // Check if path is empty before trying to save
-    if (path.equals("")) {
-        JOptionPane.showMessageDialog(this, "Please select an image first!");
-        return;
-    }
-
-    try {
-        Connection con = ConnectionProvider.getCon();
-        
-        if (con != null) {
-            String sql = "INSERT INTO admin_quotes (category, image_path) VALUES (?, ?)";
-            PreparedStatement pst = con.prepareStatement(sql);
-            
-            pst.setString(1, category);
-            pst.setString(2, path); 
-            
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Quote Image Added Successfully!");
-            
-            // Clear path after saving
-            path = "";
-            lblImagePreview.setIcon(null); 
-        } else {
-            JOptionPane.showMessageDialog(this, "Database Connection Failed!");
+        // Check path if empty before trying to save
+        if (path.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please select an image first!");
+            return;
         }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    }
+
+        try {
+            Connection con = ConnectionProvider.getCon();
+
+            if (con != null) {
+                String sql = "INSERT INTO admin_quotes (category, image_path) VALUES (?, ?)";
+                PreparedStatement pst = con.prepareStatement(sql);
+
+                pst.setString(1, category);
+                pst.setString(2, path);
+
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Quote Image Added Successfully!");
+
+                tableDetails();
+
+                // gaclear path after saving
+                path = "";
+                lblImagePreview.setIcon(null);
+            } else {
+                JOptionPane.showMessageDialog(this, "Database Connection Failed!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        if (index == -1) {
+            JOptionPane.showMessageDialog(null, "Select a quote from the table to delete!");
+            return;
+        }
+        // Get ID from the first column (Column 0)
+        String id = jTable1.getValueAt(index, 0).toString();
+
+        int check = JOptionPane.showConfirmDialog(null, "Delete this quote?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (check == 0) {
+            // You can call your QuoteCon here or write the delete SQL directly
+            try {
+                Connection con = ConnectionProvider.getCon();
+                PreparedStatement pst = con.prepareStatement("DELETE FROM admin_quotes WHERE id=?");
+                pst.setString(1, id);
+                pst.executeUpdate();
+
+                tableDetails();
+                JOptionPane.showMessageDialog(null, "Deleted!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,9 +274,15 @@ public class ManageQuotes extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblImagePreview;
     // End of variables declaration//GEN-END:variables
 }

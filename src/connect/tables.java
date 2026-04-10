@@ -15,14 +15,14 @@ public class tables {
         try{
            String userTable = "create table user (id int AUTO_INCREMENT primary key,name varchar(50) not null, email varchar(150) not null, password varchar(10) not null, address varchar(100) not null, status varchar(10), UNIQUE(email))";
            String adminDetails = "insert into user(name, email, password, address, status) " + "values ('thrsh', 'thrsh@gmail.com', 'mrtzn', 'bukidnon', 'true')";
-           String adminQuotesTable = "CREATE TABLE admin_quotes ("
+           String adminQuotesTable = "create table admin_quotes ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY, "
-                    + "category VARCHAR(50) NOT NULL, "
-                    + "image_path VARCHAR(500) NOT NULL"
+                    + "category varchar(50) not null, "
+                    + "image_path varchar(500) not null"
                     + ")";
 
-           Dbop.setDataOrDelete(adminQuotesTable, "Admin Quotes Table Created Successfully!");
-           Dbop.setDataOrDelete(userTable, "Table Create Succesfully");
+           Dbop.setDataOrDelete(adminQuotesTable, "Quotes Table Created Successfully!");
+           Dbop.setDataOrDelete(userTable, "User Table Create Succesfully");
            Dbop.setDataOrDelete(adminDetails, "Admin Details Added Succesfully");
            
         }

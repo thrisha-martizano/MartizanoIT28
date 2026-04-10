@@ -8,14 +8,15 @@ import javax.swing.JOptionPane;
 import martizanoit28.User;
 import connect.usercon;
 import javax.swing.ImageIcon;
+
 /**
  *
  * @author Thrisha Mae
  */
 public class Signup extends javax.swing.JFrame {
-    
+
     public String emailPattern = "[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Signup.class.getName());
 
     /**
@@ -25,27 +26,27 @@ public class Signup extends javax.swing.JFrame {
         initComponents();
         bt1save.setEnabled(false);
     }
-    
-    public void clear(){
+
+    public void clear() {
         name1.setText("");
         email1.setText("");
         pass1.setText("");
         add1.setText("");
         bt1save.setEnabled(false);
     }
-    
-    public void validateFields(){
+
+    public void validateFields() {
         String name = name1.getText();
         String email = email1.getText();
         String password = pass1.getText();
         String address = add1.getText();
-        if(!name.equals("") && email.matches(emailPattern) && !address.equals("") && !password.equals(""))
+        if (!name.equals("") && email.matches(emailPattern) && !address.equals("") && !password.equals("")) {
             bt1save.setEnabled(true);
-        else
+        } else {
             bt1save.setEnabled(false);
+        }
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +68,7 @@ public class Signup extends javax.swing.JFrame {
         bt1save = new javax.swing.JButton();
         bt2clear = new javax.swing.JButton();
         bt3exit = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
         bt5login = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -96,14 +98,14 @@ public class Signup extends javax.swing.JFrame {
         passl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         passl.setForeground(new java.awt.Color(255, 255, 255));
         passl.setText("Password:");
-        getContentPane().add(passl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 205, 100, 20));
+        getContentPane().add(passl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 100, 20));
 
         addl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         addl.setForeground(new java.awt.Color(255, 255, 255));
         addl.setText("Address:");
-        getContentPane().add(addl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 90, -1));
+        getContentPane().add(addl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 90, -1));
 
-        name1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        name1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         name1.addActionListener(this::name1ActionPerformed);
         name1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -112,7 +114,7 @@ public class Signup extends javax.swing.JFrame {
         });
         getContentPane().add(name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 330, -1));
 
-        email1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        email1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         email1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 email1KeyReleased(evt);
@@ -120,23 +122,23 @@ public class Signup extends javax.swing.JFrame {
         });
         getContentPane().add(email1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 176, 330, -1));
 
-        add1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        add1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         add1.addActionListener(this::add1ActionPerformed);
         add1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 add1KeyReleased(evt);
             }
         });
-        getContentPane().add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 330, -1));
+        getContentPane().add(add1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 330, -1));
 
-        pass1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        pass1.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         pass1.addActionListener(this::pass1ActionPerformed);
         pass1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 pass1KeyReleased(evt);
             }
         });
-        getContentPane().add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 330, -1));
+        getContentPane().add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 330, -1));
 
         bt1save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bt1save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
@@ -155,6 +157,12 @@ public class Signup extends javax.swing.JFrame {
         bt3exit.setText("Exit");
         bt3exit.addActionListener(this::bt3exitActionPerformed);
         getContentPane().add(bt3exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 80, 30));
+
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Show Password");
+        jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
 
         bt5login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt5login.setText("LOGIN");
@@ -186,8 +194,8 @@ public class Signup extends javax.swing.JFrame {
 
     private void bt3exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt3exitActionPerformed
         // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(null, "Do you really want to close application", "Select",JOptionPane.YES_NO_OPTION);
-        if (a ==0){
+        int a = JOptionPane.showConfirmDialog(null, "Do you really want to close application", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
             System.exit(0);
         }
     }//GEN-LAST:event_bt3exitActionPerformed
@@ -199,23 +207,18 @@ public class Signup extends javax.swing.JFrame {
         user.setEmail(email1.getText());
         user.setPassword(pass1.getText());
         user.setAddress(add1.getText());
-        
-       user.setStatus("false"); // Set default status to false for admin approval
 
-    // 2. Call your database method to save the user
-    // Assuming you have a method like usercon.save(user)
-    usercon.save(user);
+        user.setStatus("false");
+        usercon.save(user);
 
-    // 3. Show the "Wait for Admin Approval" popup
-    ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
-    JOptionPane.showMessageDialog(null, "<html><b>Wait for Admin Approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
-    
-    // 4. Clear the fields and redirect to Login
-    clear(); 
-    setVisible(false);
-    new Login().setVisible(true); // Open your Login JFrame
-        
-        
+        // 3. Show the "Wait for Admin Approval" popup
+        ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
+        JOptionPane.showMessageDialog(null, "<html><b>Wait for Admin Approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
+
+        // 4. Clear the fields and redirect to Login
+        clear();
+        setVisible(false);
+        new Login().setVisible(true); 
     }//GEN-LAST:event_bt1saveActionPerformed
 
     private void bt2clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2clearActionPerformed
@@ -229,11 +232,11 @@ public class Signup extends javax.swing.JFrame {
     }//GEN-LAST:event_name1KeyReleased
 
     private void email1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_email1KeyReleased
-         validateFields();
+        validateFields();
     }//GEN-LAST:event_email1KeyReleased
 
     private void pass1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pass1KeyReleased
-         validateFields();
+        validateFields();
     }//GEN-LAST:event_pass1KeyReleased
 
     private void add1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_add1KeyReleased
@@ -249,6 +252,14 @@ public class Signup extends javax.swing.JFrame {
     private void pass1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pass1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pass1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBox1.isSelected())
+            pass1.setEchoChar((char) 0);
+        else
+            pass1.setEchoChar('*');
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,6 +295,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JButton bt5login;
     private javax.swing.JTextField email1;
     private javax.swing.JLabel emaill;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

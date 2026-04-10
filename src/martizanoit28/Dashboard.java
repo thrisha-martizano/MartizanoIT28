@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 public class Dashboard extends javax.swing.JFrame {
 
     public String email;
-    String currentUserRole;
+    
     public String emailPattern = "[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Dashboard.class.getName());
@@ -29,38 +29,22 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
-        
-        loadLifeQuotes();
-        loadEducationQuotes();
-//        
-//        //this.currentUserRole = role; // Saves the role (Admin or Student)
-//        
-//        // 1. Load the photos for EVERYONE
-//        loadLifeQuotes();
-//        loadEducationQuotes();
-//        
-//        // 2. Role-based Visibility
-//        // If the user is NOT an Admin, hide the Manage button
-//        if (!"Admin".equals()) {
-//            btnmanage.setVisible(false); 
-//        }
-    }
-    
-   
+        }
 
     public Dashboard(String userEmail) {
         initComponents();
         email = userEmail;
-        if (!email.equals("currentUserRole")) {
+        if (email.equals("thrsh@gmail.com")) {
+        } else {
             btnverify.setVisible(false);
-            btnmanage.setVisible(false); 
+            btnmanage.setVisible(false);
         }
+
+        loadLifeQuotes();
+        loadEducationQuotes();
     }
 
   public void loadLifeQuotes() {
-    // 1. Clear any old database photos first (optional, prevents duplicates)
-    // If you want to keep the original hardcoded ones, don't clear the panel.
-    
     try {
         Connection con = connect.ConnectionProvider.getCon();
         String sql = "SELECT image_path FROM admin_quotes WHERE category='Life' ORDER BY id DESC";
@@ -69,11 +53,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         while (rs.next()) {
             String imagePath = rs.getString("image_path");
-            
             // Create a NEW label for every picture in the database
             javax.swing.JLabel newQuoteLabel = new javax.swing.JLabel();
-            
-            // Set the size to match your design (e.g., 250x200)
+            // Set the size to match your design 
             newQuoteLabel.setPreferredSize(new java.awt.Dimension(250, 200));
             
             ImageIcon icon = new ImageIcon(imagePath);
@@ -82,9 +64,8 @@ public class Dashboard extends javax.swing.JFrame {
 
             // ADD it directly to your panel
             jPanel4.add(newQuoteLabel);
+  
         }
-        
-        // Refresh the panel so the new labels show up
         jPanel4.revalidate();
         jPanel4.repaint();
         
@@ -96,7 +77,6 @@ public class Dashboard extends javax.swing.JFrame {
 public void loadEducationQuotes() {
     try {
         Connection con = connect.ConnectionProvider.getCon();
-        // Just changed the category and target panel
         String sql = "SELECT image_path FROM admin_quotes WHERE category='Education' ORDER BY id DESC";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
@@ -104,18 +84,17 @@ public void loadEducationQuotes() {
         while (rs.next()) {
             String imagePath = rs.getString("image_path");
             javax.swing.JLabel newEduLabel = new javax.swing.JLabel();
-            
-            // Using 350x250 to match your Education stickers size
-            newEduLabel.setPreferredSize(new java.awt.Dimension(350, 250));
+            newEduLabel.setPreferredSize(new java.awt.Dimension(250, 200));
 
             ImageIcon icon = new ImageIcon(imagePath);
-            Image img = icon.getImage().getScaledInstance(350, 250, Image.SCALE_SMOOTH);
+            Image img = icon.getImage().getScaledInstance(250, 200, Image.SCALE_SMOOTH);
             newEduLabel.setIcon(new ImageIcon(img));
 
             jPanel5.add(newEduLabel); // Education Panel
         }
         jPanel5.revalidate();
         jPanel5.repaint();
+        
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -143,6 +122,7 @@ public void loadEducationQuotes() {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         txtName = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -167,8 +147,8 @@ public void loadEducationQuotes() {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -228,7 +208,7 @@ public void loadEducationQuotes() {
         btnmanage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/quotes (3).png"))); // NOI18N
         btnmanage.setText("Manage Quotes");
         btnmanage.addActionListener(this::btnmanageActionPerformed);
-        getContentPane().add(btnmanage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 160, 30));
+        getContentPane().add(btnmanage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 160, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/top.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 470));
@@ -242,6 +222,11 @@ public void loadEducationQuotes() {
         jTabbedPane1.addTab("tab3", jPanel3);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jCheckBox1.setText("Show Password");
+        jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, -1, -1));
         jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 300, 30));
 
         jLabel11.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
@@ -288,9 +273,11 @@ public void loadEducationQuotes() {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel8.setPreferredSize(new java.awt.Dimension(250, 200));
-        jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane5.setMinimumSize(new java.awt.Dimension(80, 81));
+
+        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/life1-removebg-preview.png"))); // NOI18N
@@ -320,41 +307,37 @@ public void loadEducationQuotes() {
 
         jTabbedPane5.addTab("Life", jScrollPane1);
 
-        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
-
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu1-removebg-preview.png"))); // NOI18N
-        jLabel17.setAlignmentX(20.0F);
-        jLabel17.setAlignmentY(20.0F);
-        jLabel17.setPreferredSize(new java.awt.Dimension(250, 200));
-        jPanel5.add(jLabel17);
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu2-removebg-preview.png"))); // NOI18N
         jLabel10.setAlignmentX(20.0F);
         jLabel10.setAlignmentY(20.0F);
-        jLabel10.setPreferredSize(new java.awt.Dimension(250, 200));
         jPanel5.add(jLabel10);
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu1-removebg-preview.png"))); // NOI18N
+        jLabel17.setAlignmentX(20.0F);
+        jLabel17.setAlignmentY(20.0F);
+        jPanel5.add(jLabel17);
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu4-removebg-preview.png"))); // NOI18N
         jLabel19.setAlignmentX(20.0F);
         jLabel19.setAlignmentY(20.0F);
-        jLabel19.setPreferredSize(new java.awt.Dimension(250, 200));
         jPanel5.add(jLabel19);
 
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/edu3-removebg-preview.png"))); // NOI18N
         jLabel18.setAlignmentX(20.0F);
         jLabel18.setAlignmentY(20.0F);
-        jLabel18.setPreferredSize(new java.awt.Dimension(250, 200));
         jPanel5.add(jLabel18);
 
         jScrollPane2.setViewportView(jPanel5);
 
         jTabbedPane5.addTab("Education", jScrollPane2);
 
-        jPanel8.add(jTabbedPane5);
+        jPanel8.add(jTabbedPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 320));
 
         jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 570, 320));
 
@@ -405,7 +388,6 @@ public void loadEducationQuotes() {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
             Connection con = ConnectionProvider.getCon();
-            // 1. Check your SQL string. Ensure 'SET' and 'WHERE' are correct.
             String query = "update user set name=?, address=?, password=? where email=?";
             PreparedStatement ps = con.prepareStatement(query);
 
@@ -413,13 +395,12 @@ public void loadEducationQuotes() {
             ps.setString(2, txtaddress.getText());
             ps.setString(3, txtpass.getText());
             ps.setString(4, txtEmail.getText());
-            // 3. Check how many rows actually changed
+            //Check how many rows actually changed
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, "Profile Successfully Updated!");
             } else {
-                // If you see this, the 'userEmail' didn't match anything in the DB
                 JOptionPane.showMessageDialog(null, "No user found with that email. Update failed. " + email);
             }
         } catch (Exception e) {
@@ -439,7 +420,6 @@ public void loadEducationQuotes() {
                 txtEmail.setText(rs.getString("email"));
                 txtpass.setText(rs.getString("password"));
                 txtaddress.setText(rs.getString("address"));
-
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -451,6 +431,14 @@ public void loadEducationQuotes() {
         ManageQuotes manageFrame = new ManageQuotes();
         manageFrame.setVisible(true);
     }//GEN-LAST:event_btnmanageActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBox1.isSelected())
+            txtpass.setEchoChar((char) 0);
+        else
+            txtpass.setEchoChar('*');
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +473,7 @@ public void loadEducationQuotes() {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

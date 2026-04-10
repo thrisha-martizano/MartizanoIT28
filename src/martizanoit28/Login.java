@@ -63,6 +63,7 @@ public class Login extends javax.swing.JFrame {
         xt1 = new javax.swing.JButton();
         sgnp = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -130,6 +131,12 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("Haven’t registered yet?");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Show Password");
+        jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 100, 20));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/WOOW.png"))); // NOI18N
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 390, 260));
@@ -162,7 +169,6 @@ public class Login extends javax.swing.JFrame {
                 setVisible(false);
                 new Dashboard(email).setVisible(true);
             } else {
-                // This handles 'false', null, or any other status
                 ImageIcon icon = new ImageIcon("src/popupicon/pending.png");
                 JOptionPane.showMessageDialog(null, "<html><b>Your account is still pending for approval.</b></html>", "Message", JOptionPane.INFORMATION_MESSAGE, icon);
                 clear();
@@ -191,8 +197,15 @@ public class Login extends javax.swing.JFrame {
     private void clr1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clr1ActionPerformed
         // TODO add your handling code here:
         clear();
-
     }//GEN-LAST:event_clr1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        if(jCheckBox1.isSelected())
+            txtpass.setEchoChar((char)0);
+        else
+            txtpass.setEchoChar('*');
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,6 +234,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clr1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
