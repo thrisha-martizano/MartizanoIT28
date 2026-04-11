@@ -31,6 +31,7 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         }
 
+    
     public Dashboard(String userEmail) {
         initComponents();
         email = userEmail;
@@ -44,6 +45,7 @@ public class Dashboard extends javax.swing.JFrame {
         loadEducationQuotes();
     }
 
+    
   public void loadLifeQuotes() {
     try {
         Connection con = connect.ConnectionProvider.getCon();
@@ -75,6 +77,7 @@ public class Dashboard extends javax.swing.JFrame {
 }
 
 public void loadEducationQuotes() {
+   
     try {
         Connection con = connect.ConnectionProvider.getCon();
         String sql = "SELECT image_path FROM admin_quotes WHERE category='Education' ORDER BY id DESC";

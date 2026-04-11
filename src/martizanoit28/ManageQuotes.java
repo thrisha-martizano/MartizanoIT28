@@ -31,6 +31,7 @@ public class ManageQuotes extends javax.swing.JFrame {
         tableDetails();
     }
 
+    
     public void tableDetails() {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
