@@ -102,7 +102,7 @@ public class ManageQuotes extends javax.swing.JFrame {
 
         comboCategory.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Life", "Education", " " }));
-        getContentPane().add(comboCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 280, 40));
+        getContentPane().add(comboCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 280, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 204));
         jButton1.setFont(new java.awt.Font("Elephant", 0, 24)); // NOI18N
@@ -122,7 +122,7 @@ public class ManageQuotes extends javax.swing.JFrame {
         lblImagePreview.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblImagePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagePreview.setText("Image Preview");
-        getContentPane().add(lblImagePreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 280, 190));
+        getContentPane().add(lblImagePreview, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 280, 190));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/sess-removebg-preview.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 180, 130));
@@ -137,7 +137,7 @@ public class ManageQuotes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 320, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 340, 310));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/sess-removebg-preview.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
@@ -219,7 +219,7 @@ public class ManageQuotes extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index = jTable1.getSelectedRow();
         if (index == -1) {
-            JOptionPane.showMessageDialog(null, "Select a quote from the table to delete!");
+            JOptionPane.showMessageDialog(null, "Select a quote first before deleting!");
             return;
         }
         // Get ID from the first column (Column 0)
