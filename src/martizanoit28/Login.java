@@ -72,16 +72,16 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Elephant", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LOGIN");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 160, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Email:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 126, 64, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 106, -1));
@@ -102,41 +102,41 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 310, 30));
 
-        log1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        log1.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         log1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/login (1).png"))); // NOI18N
         log1.setText("Login");
         log1.addActionListener(this::log1ActionPerformed);
         getContentPane().add(log1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 140, 30));
 
-        clr1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        clr1.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         clr1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/clear (1).png"))); // NOI18N
         clr1.setText("Clear");
         clr1.setToolTipText("");
         clr1.addActionListener(this::clr1ActionPerformed);
         getContentPane().add(clr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 310, -1, 30));
 
-        xt1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        xt1.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         xt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/out.png"))); // NOI18N
         xt1.setText("Exit");
         xt1.addActionListener(this::xt1ActionPerformed);
-        getContentPane().add(xt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 80, 30));
+        getContentPane().add(xt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 90, 30));
 
-        sgnp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sgnp.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         sgnp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
         sgnp.setText("REGISTER");
         sgnp.addActionListener(this::sgnpActionPerformed);
-        getContentPane().add(sgnp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 260, 30));
+        getContentPane().add(sgnp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 260, 40));
 
         jLabel5.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Haven’t registered yet?");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jCheckBox1.setFont(new java.awt.Font("Elephant", 0, 10)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Show Password");
         jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 100, 20));
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 110, 20));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/WOOW.png"))); // NOI18N
         jLabel6.setText("jLabel6");

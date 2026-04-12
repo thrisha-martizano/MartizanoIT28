@@ -79,28 +79,28 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         regtitle.setFont(new java.awt.Font("Elephant", 1, 36)); // NOI18N
-        regtitle.setForeground(new java.awt.Color(255, 255, 0));
+        regtitle.setForeground(new java.awt.Color(255, 255, 255));
         regtitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         regtitle.setText("REGISTRATION");
         regtitle.setToolTipText("");
         getContentPane().add(regtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 400, -1));
 
-        namel.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        namel.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
         namel.setForeground(new java.awt.Color(255, 255, 255));
         namel.setText("Name:");
         getContentPane().add(namel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 70, 30));
 
-        emaill.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        emaill.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
         emaill.setForeground(new java.awt.Color(255, 255, 255));
         emaill.setText("Email:");
-        getContentPane().add(emaill, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 60, 20));
+        getContentPane().add(emaill, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 70, 20));
 
-        passl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        passl.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
         passl.setForeground(new java.awt.Color(255, 255, 255));
         passl.setText("Password:");
         getContentPane().add(passl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 100, 20));
 
-        addl.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        addl.setFont(new java.awt.Font("Elephant", 0, 18)); // NOI18N
         addl.setForeground(new java.awt.Color(255, 255, 255));
         addl.setText("Address:");
         getContentPane().add(addl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 90, -1));
@@ -140,40 +140,40 @@ public class Signup extends javax.swing.JFrame {
         });
         getContentPane().add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 330, -1));
 
-        bt1save.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bt1save.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         bt1save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
         bt1save.setText("Register");
         bt1save.addActionListener(this::bt1saveActionPerformed);
         getContentPane().add(bt1save, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 140, 30));
 
-        bt2clear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bt2clear.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         bt2clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/clear (1).png"))); // NOI18N
         bt2clear.setText("Clear");
         bt2clear.addActionListener(this::bt2clearActionPerformed);
-        getContentPane().add(bt2clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, 30));
+        getContentPane().add(bt2clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, 30));
 
-        bt3exit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bt3exit.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         bt3exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/out.png"))); // NOI18N
         bt3exit.setText("Exit");
         bt3exit.addActionListener(this::bt3exitActionPerformed);
-        getContentPane().add(bt3exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 80, 30));
+        getContentPane().add(bt3exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 90, 30));
 
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jCheckBox1.setFont(new java.awt.Font("Elephant", 0, 10)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Show Password");
         jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
         getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
 
-        bt5login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt5login.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         bt5login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/login (1).png"))); // NOI18N
         bt5login.setText("LOGIN");
         bt5login.addActionListener(this::bt5loginActionPerformed);
-        getContentPane().add(bt5login, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 270, 30));
+        getContentPane().add(bt5login, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 270, 30));
 
         jLabel7.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Already Register?");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 160, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 160, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/WOOW.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 390, 260));
