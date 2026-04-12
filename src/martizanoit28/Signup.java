@@ -165,6 +165,7 @@ public class Signup extends javax.swing.JFrame {
         getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
 
         bt5login.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt5login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/login (1).png"))); // NOI18N
         bt5login.setText("LOGIN");
         bt5login.addActionListener(this::bt5loginActionPerformed);
         getContentPane().add(bt5login, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 270, 30));

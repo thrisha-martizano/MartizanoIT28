@@ -122,6 +122,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(xt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 80, 30));
 
         sgnp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        sgnp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
         sgnp.setText("REGISTER");
         sgnp.addActionListener(this::sgnpActionPerformed);
         getContentPane().add(sgnp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 260, 30));
