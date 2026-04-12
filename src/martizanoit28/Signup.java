@@ -24,7 +24,7 @@ public class Signup extends javax.swing.JFrame {
      */
     public Signup() {
         initComponents();
-        bt1save.setEnabled(false);
+        bt1register.setEnabled(false);
     }
 
     public void clear() {
@@ -32,7 +32,7 @@ public class Signup extends javax.swing.JFrame {
         email1.setText("");
         pass1.setText("");
         add1.setText("");
-        bt1save.setEnabled(false);
+        bt1register.setEnabled(false);
     }
 
     public void validateFields() {
@@ -41,9 +41,9 @@ public class Signup extends javax.swing.JFrame {
         String password = pass1.getText();
         String address = add1.getText();
         if (!name.equals("") && email.matches(emailPattern) && !address.equals("") && !password.equals("")) {
-            bt1save.setEnabled(true);
+            bt1register.setEnabled(true);
         } else {
-            bt1save.setEnabled(false);
+            bt1register.setEnabled(false);
         }
     }
 
@@ -65,7 +65,7 @@ public class Signup extends javax.swing.JFrame {
         email1 = new javax.swing.JTextField();
         add1 = new javax.swing.JTextField();
         pass1 = new javax.swing.JPasswordField();
-        bt1save = new javax.swing.JButton();
+        bt1register = new javax.swing.JButton();
         bt2clear = new javax.swing.JButton();
         bt3exit = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -140,11 +140,11 @@ public class Signup extends javax.swing.JFrame {
         });
         getContentPane().add(pass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 330, -1));
 
-        bt1save.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
-        bt1save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
-        bt1save.setText("Register");
-        bt1save.addActionListener(this::bt1saveActionPerformed);
-        getContentPane().add(bt1save, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 140, 30));
+        bt1register.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
+        bt1register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/register.png"))); // NOI18N
+        bt1register.setText("Register");
+        bt1register.addActionListener(this::bt1registerActionPerformed);
+        getContentPane().add(bt1register, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 140, 30));
 
         bt2clear.setFont(new java.awt.Font("Elephant", 0, 14)); // NOI18N
         bt2clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/clear (1).png"))); // NOI18N
@@ -201,7 +201,7 @@ public class Signup extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt3exitActionPerformed
 
-    private void bt1saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1saveActionPerformed
+    private void bt1registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt1registerActionPerformed
         // TODO add your handling code here:
         User user = new User();
         user.setName(name1.getText());
@@ -210,7 +210,7 @@ public class Signup extends javax.swing.JFrame {
         user.setAddress(add1.getText());
 
         user.setStatus("false");
-        usercon.save(user);
+        usercon.register(user);
 
         // 3. Show the "Wait for Admin Approval" popup
         ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
@@ -220,7 +220,7 @@ public class Signup extends javax.swing.JFrame {
         clear();
         setVisible(false);
         new Login().setVisible(true); 
-    }//GEN-LAST:event_bt1saveActionPerformed
+    }//GEN-LAST:event_bt1registerActionPerformed
 
     private void bt2clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt2clearActionPerformed
         // TODO add your handling code here:
@@ -290,7 +290,7 @@ public class Signup extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField add1;
     private javax.swing.JLabel addl;
-    private javax.swing.JButton bt1save;
+    private javax.swing.JButton bt1register;
     private javax.swing.JButton bt2clear;
     private javax.swing.JButton bt3exit;
     private javax.swing.JButton bt5login;

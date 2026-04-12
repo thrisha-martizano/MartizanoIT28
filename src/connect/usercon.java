@@ -16,7 +16,7 @@ import java.sql.ResultSet;
  */
 public class usercon {
 
-    public static void save(User user) {
+    public static void register(User user) {
         String status = (user.getStatus() == null) ? "false" : user.getStatus();
         String query = "insert into user (name, email, password, address, status) "
                 + "values ('" + user.getName() + "','" + user.getEmail() + "','" + user.getPassword() + "','" + user.getAddress() + "','" + status + "')";
