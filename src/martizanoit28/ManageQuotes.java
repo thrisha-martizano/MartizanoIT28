@@ -42,7 +42,7 @@ public class ManageQuotes extends javax.swing.JFrame {
             Statement st = con.createStatement();
 
             // Ask for all the quotes
-            ResultSet rs = st.executeQuery("select * from admin_quotes");
+            ResultSet rs = st.executeQuery("select * from quotes");
 
             // Loop through every row found in MySQL
             while (rs.next()) {
@@ -187,7 +187,7 @@ public class ManageQuotes extends javax.swing.JFrame {
             Connection con = ConnectionProvider.getCon();
 
             if (con != null) {
-                String sql = "INSERT INTO admin_quotes (category, image_path) VALUES (?, ?)";
+                String sql = "INSERT INTO quotes (category, image_path) VALUES (?, ?)";
                 PreparedStatement pst = con.prepareStatement(sql);
 
                 pst.setString(1, category);
@@ -231,7 +231,7 @@ public class ManageQuotes extends javax.swing.JFrame {
             // You can call your QuoteCon here or write the delete SQL directly
             try {
                 Connection con = ConnectionProvider.getCon();
-                PreparedStatement pst = con.prepareStatement("DELETE FROM admin_quotes WHERE id=?");
+                PreparedStatement pst = con.prepareStatement("DELETE FROM quotes WHERE id=?");
                 pst.setString(1, id);
                 pst.executeUpdate();
 

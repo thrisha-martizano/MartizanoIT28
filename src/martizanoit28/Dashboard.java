@@ -49,7 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
   public void loadLifeQuotes() {
     try {
         Connection con = connect.ConnectionProvider.getCon();
-        String sql = "SELECT image_path FROM admin_quotes WHERE category='Life' ORDER BY id DESC";
+        String sql = "SELECT image_path FROM quotes WHERE category='Life' ORDER BY id DESC";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
 
@@ -80,7 +80,7 @@ public void loadEducationQuotes() {
    
     try {
         Connection con = connect.ConnectionProvider.getCon();
-        String sql = "SELECT image_path FROM admin_quotes WHERE category='Education' ORDER BY id DESC";
+        String sql = "SELECT image_path FROM quotes WHERE category='Education' ORDER BY id DESC";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
 
@@ -360,7 +360,7 @@ public void loadEducationQuotes() {
 
     private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
         // TODO add your handling code here:
-
+        //imp.
         int a = JOptionPane.showConfirmDialog(null, "Do you really want to logout?", "Select", JOptionPane.YES_NO_OPTION);
         if (a == 0) {
             setVisible(false);
