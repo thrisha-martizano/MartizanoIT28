@@ -38,70 +38,10 @@ public class Dashboard extends javax.swing.JFrame {
         if (email.equals("thrsh@gmail.com")) {
         } else {
             btnverify.setVisible(false);
-            btnmanage.setVisible(false);
+           
         }
 
-        loadLifeQuotes();
-        loadEducationQuotes();
     }
-
-    
-  public void loadLifeQuotes() {
-    try {
-        Connection con = connect.ConnectionProvider.getCon();
-        String sql = "SELECT image_path FROM quotes WHERE category='Life' ORDER BY id DESC";
-        PreparedStatement pst = con.prepareStatement(sql);
-        ResultSet rs = pst.executeQuery();
-
-        while (rs.next()) {
-            String imagePath = rs.getString("image_path");
-            // Create a NEW label for every picture in the database
-            javax.swing.JLabel newQuoteLabel = new javax.swing.JLabel();
-            // Set the size to match your design 
-            newQuoteLabel.setPreferredSize(new java.awt.Dimension(250, 200));
-            
-            ImageIcon icon = new ImageIcon(imagePath);
-            Image img = icon.getImage().getScaledInstance(250, 200, Image.SCALE_SMOOTH);
-            newQuoteLabel.setIcon(new ImageIcon(img));
-
-            // ADD it directly to your panel
-            jPanel4.add(newQuoteLabel);
-  
-        }
-        jPanel4.revalidate();
-        jPanel4.repaint();
-        
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-
-public void loadEducationQuotes() {
-   
-    try {
-        Connection con = connect.ConnectionProvider.getCon();
-        String sql = "SELECT image_path FROM quotes WHERE category='Education' ORDER BY id DESC";
-        PreparedStatement pst = con.prepareStatement(sql);
-        ResultSet rs = pst.executeQuery();
-
-        while (rs.next()) {
-            String imagePath = rs.getString("image_path");
-            javax.swing.JLabel newEduLabel = new javax.swing.JLabel();
-            newEduLabel.setPreferredSize(new java.awt.Dimension(250, 200));
-
-            ImageIcon icon = new ImageIcon(imagePath);
-            Image img = icon.getImage().getScaledInstance(250, 200, Image.SCALE_SMOOTH);
-            newEduLabel.setIcon(new ImageIcon(img));
-
-            jPanel5.add(newEduLabel); // Education Panel
-        }
-        jPanel5.revalidate();
-        jPanel5.repaint();
-        
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,7 +59,6 @@ public void loadEducationQuotes() {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        btnmanage = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -205,13 +144,6 @@ public void loadEducationQuotes() {
         jButton1.setText("Home");
         jButton1.addActionListener(this::jButton1ActionPerformed);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, 50));
-
-        btnmanage.setBackground(new java.awt.Color(255, 255, 204));
-        btnmanage.setFont(new java.awt.Font("Elephant", 1, 12)); // NOI18N
-        btnmanage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/quotes (3).png"))); // NOI18N
-        btnmanage.setText("Manage Quotes");
-        btnmanage.addActionListener(this::btnmanageActionPerformed);
-        getContentPane().add(btnmanage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 160, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img&icon/top.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 470));
@@ -429,12 +361,6 @@ public void loadEducationQuotes() {
         }
     }//GEN-LAST:event_formComponentShown
 
-    private void btnmanageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmanageActionPerformed
-        // TODO add your handling code here:
-        ManageQuotes manageFrame = new ManageQuotes();
-        manageFrame.setVisible(true);
-    }//GEN-LAST:event_btnmanageActionPerformed
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         if (jCheckBox1.isSelected())
@@ -471,7 +397,6 @@ public void loadEducationQuotes() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnlogout;
-    private javax.swing.JButton btnmanage;
     private javax.swing.JButton btnverify;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
